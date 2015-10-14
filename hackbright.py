@@ -130,6 +130,20 @@ def list_projects(github):
 
     return rows
 
+def get_project_info(title):
+    """ Get the description and maximum grade for a given project title."""
+
+    QUERY = """
+        SELECT description, max_grade
+        FROM Projects
+        WHERE title = :title
+    """
+
+    db_cursor = db.session.execute(QUERY, {'title': title})
+    row = db_cursor.fetchone()
+
+    return row
+
 
 def handle_input():
     """Main loop.
