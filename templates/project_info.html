@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+    <title>Project Info</title>
+</head>
+<body>
+<h1>{{ title }}</h1>
+
+<p>Description: {{ description }}</p>
+<p>Max Grade: {{ max_grade }}</p>
+
+<p>Students grades for {{ title }}:</p>
+    <ul>
+    {% for tuple in student_grades %}
+        <li><a href="/student?github={{ tuple[3] }}">{{ tuple[0] }} {{ tuple[1] }} </a>: {{ tuple[2] }}</li>
+    {% endfor %}
+    </ul>
+
+</body>
+</html>
