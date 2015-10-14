@@ -123,15 +123,12 @@ def list_projects(github):
         WHERE student_github = :github
     """
 
-    list_of_tuples = []
-
     db_cursor = db.session.execute(QUERY, {'github': github})
     rows = db_cursor.fetchall()
     for row in rows:
         print "Project: {} \n Grade: {} \n".format(row[0], row[1])
-        list_of_tuples.append((row[0], row[1]))
 
-    return list_of_tuples
+    return rows
 
 
 def handle_input():

@@ -10,7 +10,7 @@
 
 <p>Projects completed by {{ first }}:
     <ul>
-    {% for tuple in list_of_tuples %}
+    {% for tuple in rows %}
         <li>{{ tuple[0] }}: {{ tuple[1] }}</li>
     {% endfor %}
     </ul>
