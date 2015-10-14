@@ -145,6 +145,21 @@ def get_project_info(title):
     return row
 
 
+def list_students_by_completed_project(title):
+    """Get a list of students who have completed a given project, with grade"""
+    QUERY = """
+        SELECT first_name, last_name, grade, github
+        FROM Students JOIN Grades ON (Students.github = Grades.student_github)
+        WHERE project_title = :title
+        """
+    db_cursor = db.session.execute(QUERY, {'title': title})
+    rows = db_cursor.fetchall()
+    for row in rows:
+        print "Student {} {} received grade of {}".format(row[0], row[1], row[2])
+    return rows
+
+
+
 def handle_input():
     """Main loop.
 
