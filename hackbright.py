@@ -159,6 +159,29 @@ def list_students_by_completed_project(title):
     return rows
 
 
+def list_all_students():
+    """Get a list of all students."""
+    QUERY = """
+        SELECT first_name, last_name, github
+        FROM Students
+        """
+    db_cursor = db.session.execute(QUERY)
+    rows = db_cursor.fetchall()
+    print "Successfully returning all students."
+    return rows
+
+
+def list_all_projects():
+    """Get a list of all projects."""
+    QUERY = """
+        SELECT title
+        FROM Projects
+        """
+    db_cursor = db.session.execute(QUERY)
+    rows = db_cursor.fetchall()
+    print "Successfully returned all project names."
+    return rows
+
 
 def handle_input():
     """Main loop.
