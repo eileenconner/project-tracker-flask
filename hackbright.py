@@ -114,6 +114,25 @@ def get_grades_by_title(title):
             row[0], row[1], title)
     return rows
 
+def list_projects(github):
+    """Get a list of all the projects and grades for a given student."""
+
+    QUERY = """
+        SELECT project_title, grade
+        FROM Grades
+        WHERE student_github = :github
+    """
+
+    list_of_tuples = []
+
+    db_cursor = db.session.execute(QUERY, {'github': github})
+    rows = db_cursor.fetchall()
+    for row in rows:
+        print "Project: {} \n Grade: {} \n".format(row[0], row[1])
+        list_of_tuples.append((row[0], row[1]))
+
+    return list_of_tuples
+
 
 def handle_input():
     """Main loop.
